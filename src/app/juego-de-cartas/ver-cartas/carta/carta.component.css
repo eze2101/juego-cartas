@@ -1,0 +1,13 @@
+.imagen {
+  width: 150px;
+  height: 150px;
+}
+
+.mat-card {
+  margin-top: 15px;
+  background-color: bisque;
+}
+
+.footer {
+  justify-content: space-around;
+}

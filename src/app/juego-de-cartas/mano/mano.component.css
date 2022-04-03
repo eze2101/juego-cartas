@@ -1,0 +1,10 @@
+.mano {
+  width: 100%;
+  height: 200px;
+  background-color: blueviolet;
+}
+
+.mat-card {
+  width: 100px !important;
+  height: 110px !important;
+}
