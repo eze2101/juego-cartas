@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { Carta } from 'src/app/interfaces/carta.interface';
 
 @Component({
@@ -8,6 +9,7 @@ import { Carta } from 'src/app/interfaces/carta.interface';
 })
 export class CartaEnJuegoComponent implements OnInit {
   @Input() carta!: Carta;
+
   constructor() {}
 
   ngOnInit(): void {}

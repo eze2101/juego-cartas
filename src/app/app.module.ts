@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from './material/material.module';
 import { JuegoDeCartasModule } from './juego-de-cartas/juego-de-cartas.module';
+
 import { MenuComponent } from './menu/menu.component';
 
 @NgModule({

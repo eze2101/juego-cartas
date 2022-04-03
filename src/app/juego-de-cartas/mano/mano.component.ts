@@ -1,29 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+
 import { Carta } from '../../interfaces/carta.interface';
-import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
+
+import { MazoComponent } from '../mazo/mazo.component';
+import { CartaEnJuegoComponent } from '../carta-en-juego/carta-en-juego.component';
+import { JuegoComponent } from '../juego/juego.component';
 
 @Component({
+  providers: [MazoComponent, CartaEnJuegoComponent, JuegoComponent],
   selector: 'app-mano',
   templateUrl: './mano.component.html',
   styleUrls: ['./mano.component.css'],
 })
 export class ManoComponent implements OnInit {
-  cartas: Carta[] = ListaCartas;
-  cartasIniciales: Carta[] = [];
+  cartas: Carta[] = [];
+  cartasEnMano: Carta[] = [];
 
-  constructor() {}
+  @Input() cartasencampo!: Carta[];
+
+  constructor(
+    private mazo: MazoComponent,
+    private cartaEnjuego: CartaEnJuegoComponent,
+    private juego: JuegoComponent
+  ) {}
   ngOnInit(): void {}
 
-  mezclarCartas(mazo: Carta[]) {
-    var i, j, temp;
-    for (i = mazo.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = mazo[i];
-      mazo[i] = mazo[j];
-      mazo[j] = temp;
+  iniciarJuego() {
+    this.cartas = this.mazo.mezclarCartas();
+  }
+
+  levantar7() {
+    for (let index = 0; index < 7; index++) {
+      this.cartasEnMano.push(this.cartas.shift()!);
     }
-    console.log(mazo);
-    return (this.cartasIniciales = mazo);
+    // console.log(this.cartasEnMano);
+    // console.log(this.cartas);
+  }
+
+  levantar() {
+    this.cartasEnMano.push(this.cartas.shift()!);
+    // console.log(this.cartasEnMano);
+  }
+
+  @Output() cartasAlCampo: EventEmitter<Carta> = new EventEmitter();
+
+  cartaSelecionada(carta: Carta) {
+    var index = this.cartasEnMano
+      .map((card) => card.nombre)
+      .indexOf(carta.nombre);
+    if (this.cartasencampo.length < 2) {
+      this.cartasEnMano.splice(index, 1);
+      console.log(this.cartasEnMano);
+      this.cartasAlCampo.emit(carta);
+    } else {
+      return;
+    }
   }
 }
 /*manoInicial() {

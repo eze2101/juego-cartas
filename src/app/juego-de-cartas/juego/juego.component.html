@@ -1,2 +1,20 @@
-<div class="campo"></div>
-<app-mano></app-mano>
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="center"
+  fxLayoutGap="20px"
+  class="campo"
+>
+  <div
+    fxFlex="12"
+    fxFlex.xs="30"
+    *ngFor="let carta of cartasEnCampo"
+    (click)="devolverCarta(carta)"
+  >
+    <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
+  </div>
+</div>
+
+<app-mano
+  (cartasAlCampo)="agregarCartasAlCampo($event)"
+  [cartasencampo]="cartasEnCampo"
+></app-mano>

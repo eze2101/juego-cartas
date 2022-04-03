@@ -2,145 +2,145 @@
   {
     "nombre": "michi",
     "tipo": "fuego",
-    "daño": "100",
+    "dano": "100",
     "defensa": "70"
   },
   {
     "nombre": "pix",
     "tipo": "fuego",
-    "daño": "80",
+    "dano": "80",
     "defensa": "90"
   },
   {
     "nombre": "furt",
     "tipo": "fuego",
-    "daño": "120",
+    "dano": "120",
     "defensa": "50"
   },
   {
     "nombre": "darel",
     "tipo": "fuego",
-    "daño": "90",
+    "dano": "90",
     "defensa": "80"
   },
   {
     "nombre": "persic",
     "tipo": "fuego",
-    "daño": "130",
+    "dano": "130",
     "defensa": "40"
   },
   {
     "nombre": "vorl",
     "tipo": "fuego",
-    "daño": "100",
+    "dano": "100",
     "defensa": "60"
   },
   {
     "nombre": "lil",
     "tipo": "agua",
-    "daño": "60",
+    "dano": "60",
     "defensa": "110"
   },
   {
     "nombre": "mek",
     "tipo": "agua",
-    "daño": "80",
+    "dano": "80",
     "defensa": "80"
   },
   {
     "nombre": "jeroul",
     "tipo": "agua",
-    "daño": "50",
+    "dano": "50",
     "defensa": "120"
   },
   {
     "nombre": "beril",
     "tipo": "agua",
-    "daño": "70",
+    "dano": "70",
     "defensa": "90"
   },
   {
     "nombre": "ferot",
     "tipo": "agua",
-    "daño": "100",
+    "dano": "100",
     "defensa": "70"
   },
   {
     "nombre": "aserut",
     "tipo": "agua",
-    "daño": "60",
+    "dano": "60",
     "defensa": "90"
   },
   {
     "nombre": "toluk",
     "tipo": "tierra",
-    "daño": "60",
+    "dano": "60",
     "defensa": "100"
   },
   {
     "nombre": "kater",
     "tipo": "tierra",
-    "daño": "80",
+    "dano": "80",
     "defensa": "90"
   },
   {
     "nombre": "verlik",
     "tipo": "tierra",
-    "daño": "80",
+    "dano": "80",
     "defensa": "80"
   },
   {
     "nombre": "pork",
     "tipo": "tierra",
-    "daño": "70",
+    "dano": "70",
     "defensa": "90"
   },
   {
     "nombre": "retar",
     "tipo": "tierra",
-    "daño": "110",
+    "dano": "110",
     "defensa": "70"
   },
   {
     "nombre": "garel",
     "tipo": "tierra",
-    "daño": "90",
+    "dano": "90",
     "defensa": "60"
   },
   {
     "nombre": "veloum",
     "tipo": "aire",
-    "daño": "100",
+    "dano": "100",
     "defensa": "70"
   },
   {
     "nombre": "lesim",
     "tipo": "aire",
-    "daño": "80",
+    "dano": "80",
     "defensa": "80"
   },
   {
     "nombre": "turil",
     "tipo": "aire",
-    "daño": "70",
+    "dano": "70",
     "defensa": "90"
   },
   {
     "nombre": "pares",
     "tipo": "aire",
-    "daño": "110",
+    "dano": "110",
     "defensa": "50"
   },
   {
     "nombre": "siros",
     "tipo": "aire",
-    "daño": "90",
+    "dano": "90",
     "defensa": "80"
   },
   {
     "nombre": "cekaros",
     "tipo": "aire",
-    "daño": "100",
+    "dano": "100",
     "defensa": "50"
   }
 ]

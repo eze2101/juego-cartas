@@ -1,9 +1,6 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Carta } from '../../interfaces/carta.interface';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CartasService {
-  @Output() disparador: EventEmitter<Carta[]> = new EventEmitter();
-}
+export class CartasService {}
