@@ -2,39 +2,33 @@ import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
 import { Carta } from '../../interfaces/carta.interface';
 
-import { MazoComponent } from '../mazo/mazo.component';
 import { CartaEnJuegoComponent } from '../carta-en-juego/carta-en-juego.component';
 import { JuegoComponent } from '../juego/juego.component';
+import { CartasService } from '../services/cartas.service';
 
 @Component({
-  providers: [MazoComponent, CartaEnJuegoComponent, JuegoComponent],
+  providers: [CartaEnJuegoComponent, JuegoComponent],
   selector: 'app-mano',
   templateUrl: './mano.component.html',
   styleUrls: ['./mano.component.css'],
 })
 export class ManoComponent implements OnInit {
-  cartas: Carta[] = [];
-  cartasEnMano: Carta[] = [];
-
-  @Input() cartasencampo!: Carta[];
+  cartas: Carta[] = this.cartasServices.cartas;
+  cartasEnMano: Carta[] = this.cartasServices.cartasEnMano;
+  iniciojuego = false;
 
   constructor(
-    private mazo: MazoComponent,
     private cartaEnjuego: CartaEnJuegoComponent,
-    private juego: JuegoComponent
+    private juego: JuegoComponent,
+    private cartasServices: CartasService
   ) {}
   ngOnInit(): void {}
 
   iniciarJuego() {
-    this.cartas = this.mazo.mezclarCartas();
-  }
+    this.cartasServices.ComenzarJuego();
 
-  levantar7() {
-    for (let index = 0; index < 7; index++) {
-      this.cartasEnMano.push(this.cartas.shift()!);
-    }
-    // console.log(this.cartasEnMano);
-    // console.log(this.cartas);
+    console.log(this.cartas);
+    console.log(this.cartasEnMano);
   }
 
   levantar() {
@@ -44,23 +38,7 @@ export class ManoComponent implements OnInit {
 
   @Output() cartasAlCampo: EventEmitter<Carta> = new EventEmitter();
 
-  cartaSelecionada(carta: Carta) {
-    var index = this.cartasEnMano
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
-    if (this.cartasencampo.length < 2) {
-      this.cartasEnMano.splice(index, 1);
-      console.log(this.cartasEnMano);
-      this.cartasAlCampo.emit(carta);
-    } else {
-      return;
-    }
+  JugarCarta(carta: Carta) {
+    this.cartasServices.jugarCarta(carta);
   }
 }
-/*manoInicial() {
-    for (let index = 0; index < 7; index++) {
-      this.cartasIniciales.push(this.cartas[index]);
-    }
-    console.log(this.cartasIniciales);
-    return this.cartasIniciales;
-  }*/

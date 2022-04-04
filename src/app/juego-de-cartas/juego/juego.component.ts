@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Carta } from '../../interfaces/carta.interface';
+import { CartasService } from '../services/cartas.service';
 
 @Component({
   selector: 'app-juego',
@@ -7,28 +9,14 @@ import { Carta } from '../../interfaces/carta.interface';
   styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit {
-  cartasEnCampo: Carta[] = [];
-  cartaDevuelta: Carta[] = [];
+  cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
+  cartaDevuelta: Carta[] = this.CartasService.cartaDevuelta;
 
-  constructor() {}
+  constructor(private CartasService: CartasService) {}
 
   ngOnInit(): void {}
 
-  agregarCartasAlCampo(argumento: Carta) {
-    this.cartasEnCampo.push(argumento);
-    console.log(this.cartasEnCampo);
-    return this.cartasEnCampo;
+  RecuperarCarta(carta: Carta) {
+    this.CartasService.recuperarCarta(carta);
   }
-
-  devolverCarta(carta: Carta) {
-    var index = this.cartasEnCampo
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
-    this.cartaDevuelta.push(carta);
-    this.cartasEnCampo.splice(index, 1);
-    console.log(this.cartaDevuelta);
-  }
-}
-function input() {
-  throw new Error('Function not implemented.');
 }

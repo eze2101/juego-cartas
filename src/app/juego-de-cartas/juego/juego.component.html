@@ -8,13 +8,10 @@
     fxFlex="12"
     fxFlex.xs="30"
     *ngFor="let carta of cartasEnCampo"
-    (click)="devolverCarta(carta)"
+    (click)="RecuperarCarta(carta)"
   >
     <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
   </div>
 </div>
 
-<app-mano
-  (cartasAlCampo)="agregarCartasAlCampo($event)"
-  [cartasencampo]="cartasEnCampo"
-></app-mano>
+<app-mano></app-mano>
