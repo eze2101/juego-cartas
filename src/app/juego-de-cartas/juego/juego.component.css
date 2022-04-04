@@ -3,3 +3,23 @@
   height: 55%;
   background-color: antiquewhite;
 }
+
+.contenedorBoton {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.boton {
+  display: flex;
+  justify-content: center;
+  background-color: brown;
+  border: 1px solid black;
+}
+
+.p-toast .p-toast-message {
+  background: #0d4b32 !important;
+  border: solid #15684d;
+  border-width: 0 0 0 6px;
+  color: #1ea97c;
+}

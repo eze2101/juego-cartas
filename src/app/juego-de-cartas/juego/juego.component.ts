@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Carta } from '../../interfaces/carta.interface';
+
+import { MessageService } from 'primeng/api';
 import { CartasService } from '../services/cartas.service';
 
 @Component({
@@ -12,11 +14,18 @@ export class JuegoComponent implements OnInit {
   cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
   cartaDevuelta: Carta[] = this.CartasService.cartaDevuelta;
 
-  constructor(private CartasService: CartasService) {}
+  constructor(
+    private CartasService: CartasService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
 
   RecuperarCarta(carta: Carta) {
     this.CartasService.recuperarCarta(carta);
+  }
+
+  combate() {
+    this.CartasService.Combate();
   }
 }

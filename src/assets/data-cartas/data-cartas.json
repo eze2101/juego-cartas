@@ -2,145 +2,145 @@
   {
     "nombre": "michi",
     "tipo": "fuego",
-    "dano": "100",
-    "defensa": "70"
+    "dano": 100,
+    "defensa": 70
   },
   {
     "nombre": "pix",
     "tipo": "fuego",
-    "dano": "80",
-    "defensa": "90"
+    "dano": 80,
+    "defensa": 90
   },
   {
     "nombre": "furt",
     "tipo": "fuego",
-    "dano": "120",
-    "defensa": "50"
+    "dano": 120,
+    "defensa": 50
   },
   {
     "nombre": "darel",
     "tipo": "fuego",
-    "dano": "90",
-    "defensa": "80"
+    "dano": 90,
+    "defensa": 80
   },
   {
     "nombre": "persic",
     "tipo": "fuego",
-    "dano": "130",
-    "defensa": "40"
+    "dano": 130,
+    "defensa": 40
   },
   {
     "nombre": "vorl",
     "tipo": "fuego",
-    "dano": "100",
-    "defensa": "60"
+    "dano": 100,
+    "defensa": 60
   },
   {
     "nombre": "lil",
     "tipo": "agua",
-    "dano": "60",
-    "defensa": "110"
+    "dano": 60,
+    "defensa": 110
   },
   {
     "nombre": "mek",
     "tipo": "agua",
-    "dano": "80",
-    "defensa": "80"
+    "dano": 80,
+    "defensa": 80
   },
   {
     "nombre": "jeroul",
     "tipo": "agua",
-    "dano": "50",
-    "defensa": "120"
+    "dano": 50,
+    "defensa": 120
   },
   {
     "nombre": "beril",
     "tipo": "agua",
-    "dano": "70",
-    "defensa": "90"
+    "dano": 70,
+    "defensa": 90
   },
   {
     "nombre": "ferot",
     "tipo": "agua",
-    "dano": "100",
-    "defensa": "70"
+    "dano": 100,
+    "defensa": 70
   },
   {
     "nombre": "aserut",
     "tipo": "agua",
-    "dano": "60",
-    "defensa": "90"
+    "dano": 60,
+    "defensa": 90
   },
   {
     "nombre": "toluk",
     "tipo": "tierra",
-    "dano": "60",
-    "defensa": "100"
+    "dano": 60,
+    "defensa": 100
   },
   {
     "nombre": "kater",
     "tipo": "tierra",
-    "dano": "80",
-    "defensa": "90"
+    "dano": 80,
+    "defensa": 90
   },
   {
     "nombre": "verlik",
     "tipo": "tierra",
-    "dano": "80",
-    "defensa": "80"
+    "dano": 80,
+    "defensa": 80
   },
   {
     "nombre": "pork",
     "tipo": "tierra",
-    "dano": "70",
-    "defensa": "90"
+    "dano": 70,
+    "defensa": 90
   },
   {
     "nombre": "retar",
     "tipo": "tierra",
-    "dano": "110",
-    "defensa": "70"
+    "dano": 110,
+    "defensa": 70
   },
   {
     "nombre": "garel",
     "tipo": "tierra",
-    "dano": "90",
-    "defensa": "60"
+    "dano": 90,
+    "defensa": 60
   },
   {
     "nombre": "veloum",
     "tipo": "aire",
-    "dano": "100",
-    "defensa": "70"
+    "dano": 100,
+    "defensa": 70
   },
   {
     "nombre": "lesim",
     "tipo": "aire",
-    "dano": "80",
-    "defensa": "80"
+    "dano": 80,
+    "defensa": 80
   },
   {
     "nombre": "turil",
     "tipo": "aire",
-    "dano": "70",
-    "defensa": "90"
+    "dano": 70,
+    "defensa": 90
   },
   {
     "nombre": "pares",
     "tipo": "aire",
-    "dano": "110",
-    "defensa": "50"
+    "dano": 110,
+    "defensa": 50
   },
   {
     "nombre": "siros",
     "tipo": "aire",
-    "dano": "90",
-    "defensa": "80"
+    "dano": 90,
+    "defensa": 80
   },
   {
     "nombre": "cekaros",
     "tipo": "aire",
-    "dano": "100",
-    "defensa": "50"
+    "dano": 100,
+    "defensa": 50
   }
 ]

@@ -1,6 +1,6 @@
 <button mat-button (click)="iniciarJuego()">comenzar juego</button>
 <span>cartas en el mazo: {{ cartas.length }}</span>
-<button mat-button (click)="levantar()">levantar</button>
+<span>cartas en el mazo de descarte: {{ cartasEnDescarte.length }}</span>
 <footer class="mano">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
     <div
@@ -9,7 +9,7 @@
       *ngFor="let carta of cartasEnMano"
       (click)="JugarCarta(carta)"
     >
-      <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
+      <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
     </div>
   </div>
 </footer>
