@@ -11,15 +11,18 @@ import { CartasService } from '../services/cartas.service';
   styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit {
-  cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
-  cartaDevuelta: Carta[] = this.CartasService.cartaDevuelta;
+  cartasEnCampo!: Carta[];
+  cartaDevuelta!: Carta[];
 
   constructor(
     private CartasService: CartasService,
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartasEnCampo = this.CartasService.cartasEnCampo;
+    this.cartaDevuelta = this.CartasService.cartaDevuelta;
+  }
 
   RecuperarCarta(carta: Carta) {
     this.CartasService.recuperarCarta(carta);

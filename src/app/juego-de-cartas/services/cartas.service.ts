@@ -10,56 +10,29 @@ import { MessageService } from 'primeng/api';
 })
 export class CartasService {
   iniciojuego = false;
-  private cartas: Carta[] = ListaCartas;
-  mazo: Carta[] = [...this.cartas];
-  mazoMezclado: Carta[] = [];
-  cartasEnMano: Carta[] = [];
-
-  cartasEnCampo: Carta[] = [];
-  cartaDevuelta: Carta[] = [];
-
-  mazoDeDescarte: Carta[] = [];
 
   constructor(private MessageService: MessageService) {}
 
   ngOnInit(): void {}
 
-  mezclarCartas() {
-    for (let index = 0; index < this.mazo.length; index++) {
-      this.mazoMezclado.push(this.mazo[index]);
+  mezclarCartas(mazo: Carta[]) {
+    const mazoMezclado: Carta[] = [];
+    for (let index = 0; index < mazo.length; index++) {
+      mazoMezclado.push(mazo[index]);
     }
 
     var i, j, temp;
-    for (i = this.mazoMezclado.length - 1; i > 0; i--) {
+    for (i = mazoMezclado.length - 1; i > 0; i--) {
       j = Math.floor(Math.random() * (i + 1));
-      temp = this.mazoMezclado[i];
-      this.mazoMezclado[i] = this.mazoMezclado[j];
-      this.mazoMezclado[j] = temp;
+      temp = mazoMezclado[i];
+      mazoMezclado[i] = mazoMezclado[j];
+      mazoMezclado[j] = temp;
     }
-  }
-
-  ComenzarJuego() {
-    if (this.iniciojuego === false) {
-      this.mezclarCartas();
-      for (let index = 0; index < 7; index++) {
-        this.cartasEnMano.push(this.mazoMezclado.shift()!);
-      }
-      this.iniciojuego = true;
-    } else {
-      this.iniciojuego = false;
-      for (let index = 0; index < 30; index++) {
-        this.cartasEnMano.shift();
-        this.cartasEnCampo.shift();
-        this.mazoDeDescarte.shift();
-        this.mazoMezclado.shift();
-      }
-
-      this.ComenzarJuego();
-    }
+    return mazoMezclado;
   }
 
   levantar() {
-    if (this.mazoMezclado.length >= 1) {
+    if (this.mazoMezclado.length) {
       this.cartasEnMano.push(this.mazoMezclado.shift()!);
     }
   }
@@ -125,6 +98,7 @@ export class CartasService {
       .indexOf(carta.nombre);
     this.mazoDeDescarte.push(carta);
     this.cartasEnCampo.splice(index, 1);
+
     console.log(this.mazoDeDescarte);
   }
 }

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JuegoComponent } from './juego-de-cartas/juego/juego.component';
+
 import { CartasComponent } from './juego-de-cartas/ver-cartas/cartas/cartas.component';
+import { JuegoDeCartasComponent } from './juego-de-cartas/juego-de-cartas.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: JuegoComponent,
+    component: JuegoDeCartasComponent,
   },
   {
     path: 'cartas',

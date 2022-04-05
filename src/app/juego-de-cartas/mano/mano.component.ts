@@ -18,11 +18,11 @@ export class ManoComponent implements OnInit {
   constructor(private cartasServices: CartasService) {}
   ngOnInit(): void {}
 
-  iniciarJuego() {
-    this.cartasServices.ComenzarJuego();
-  }
+  @Output() ComenzarJuego: EventEmitter<any> = new EventEmitter();
 
-  @Output() cartasAlCampo: EventEmitter<Carta> = new EventEmitter();
+  iniciarJuego() {
+    this.ComenzarJuego.emit();
+  }
 
   JugarCarta(carta: Carta) {
     this.cartasServices.jugarCarta(carta);
