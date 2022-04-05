@@ -10,7 +10,7 @@ import { CartasService } from '../services/cartas.service';
   styleUrls: ['./mano.component.css'],
 })
 export class ManoComponent implements OnInit {
-  cartas: Carta[] = this.cartasServices.cartas;
+  cartas: Carta[] = this.cartasServices.mazoMezclado;
   cartasEnMano: Carta[] = this.cartasServices.cartasEnMano;
   cartasEnDescarte: Carta[] = this.cartasServices.mazoDeDescarte;
   iniciojuego = false;
@@ -20,9 +20,6 @@ export class ManoComponent implements OnInit {
 
   iniciarJuego() {
     this.cartasServices.ComenzarJuego();
-
-    console.log(this.cartas);
-    console.log(this.cartasEnMano);
   }
 
   @Output() cartasAlCampo: EventEmitter<Carta> = new EventEmitter();

@@ -10,7 +10,9 @@ import { MessageService } from 'primeng/api';
 })
 export class CartasService {
   iniciojuego = false;
-  cartas: Carta[] = ListaCartas;
+  private cartas: Carta[] = ListaCartas;
+  mazo: Carta[] = [...this.cartas];
+  mazoMezclado: Carta[] = [];
   cartasEnMano: Carta[] = [];
 
   cartasEnCampo: Carta[] = [];
@@ -22,60 +24,64 @@ export class CartasService {
 
   ngOnInit(): void {}
 
-  indexCarta(carta: Carta) {
-    var index = this.cartasEnMano
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
-    return index;
-  }
-
   mezclarCartas() {
-    var i, j, temp;
-    for (i = this.cartas.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = this.cartas[i];
-      this.cartas[i] = this.cartas[j];
-      this.cartas[j] = temp;
+    for (let index = 0; index < this.mazo.length; index++) {
+      this.mazoMezclado.push(this.mazo[index]);
     }
 
-    return this.cartas;
+    var i, j, temp;
+    for (i = this.mazoMezclado.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = this.mazoMezclado[i];
+      this.mazoMezclado[i] = this.mazoMezclado[j];
+      this.mazoMezclado[j] = temp;
+    }
   }
 
   ComenzarJuego() {
     if (this.iniciojuego === false) {
       this.mezclarCartas();
       for (let index = 0; index < 7; index++) {
-        this.cartasEnMano.push(this.cartas.shift()!);
+        this.cartasEnMano.push(this.mazoMezclado.shift()!);
       }
       this.iniciojuego = true;
-      return this.cartasEnMano;
-    } else return;
+    } else {
+      this.iniciojuego = false;
+      for (let index = 0; index < 30; index++) {
+        this.cartasEnMano.shift();
+        this.cartasEnCampo.shift();
+        this.mazoDeDescarte.shift();
+        this.mazoMezclado.shift();
+      }
+
+      this.ComenzarJuego();
+    }
   }
 
   levantar() {
-    if (this.cartas.length >= 1) {
-      this.cartasEnMano.push(this.cartas.shift()!);
+    if (this.mazoMezclado.length >= 1) {
+      this.cartasEnMano.push(this.mazoMezclado.shift()!);
     }
   }
 
   jugarCarta(carta: Carta) {
-    var index = this.indexCarta(carta);
+    var index = this.cartasEnMano
+      .map((card) => card.nombre)
+      .indexOf(carta.nombre);
     if (this.cartasEnCampo.length < 2) {
       this.cartasEnMano.splice(index, 1);
       this.cartasEnCampo.push(carta);
-      console.log(this.cartasEnMano);
-      console.log(this.cartasEnCampo);
     } else {
       return;
     }
   }
 
   recuperarCarta(carta: Carta) {
-    var index = this.indexCarta(carta);
+    var index = this.cartasEnCampo
+      .map((card) => card.nombre)
+      .indexOf(carta.nombre);
     this.cartasEnMano.push(carta);
     this.cartasEnCampo.splice(index, 1);
-    console.log(carta);
-    console.log(this.cartasEnCampo);
   }
 
   Combate() {
@@ -114,7 +120,9 @@ export class CartasService {
   }
 
   cartaDerrotada(carta: Carta) {
-    var index = this.indexCarta(carta);
+    var index = this.cartasEnCampo
+      .map((card) => card.nombre)
+      .indexOf(carta.nombre);
     this.mazoDeDescarte.push(carta);
     this.cartasEnCampo.splice(index, 1);
     console.log(this.mazoDeDescarte);
