@@ -10,6 +10,7 @@ import { ManoComponent } from './mano/mano.component';
 import { JuegoComponent } from './juego/juego.component';
 import { CartaEnJuegoComponent } from './carta-en-juego/carta-en-juego.component';
 import { MazoComponent } from './mazo/mazo.component';
+import { CartasService } from './services/cartas.service';
 
 @NgModule({
   declarations: [
@@ -22,5 +23,6 @@ import { MazoComponent } from './mazo/mazo.component';
   ],
   imports: [CommonModule, MaterialModule, FlexLayoutModule],
   exports: [CartaComponent, CartasComponent, ManoComponent, JuegoComponent],
+  providers: [CartasService],
 })
 export class JuegoDeCartasModule {}
