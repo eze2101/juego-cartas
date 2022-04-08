@@ -37,6 +37,10 @@ export class JuegoDeCartasComponent implements OnInit {
     this.cartasEnMano = this.mazoMezclado.splice(0, 7);
   }
 
+  getMazo() {
+    return this.mazoMezclado;
+  }
+
   levantar() {
     if (this.mazoMezclado.length) {
       this.cartasEnMano.push(this.mazoMezclado.shift()!);

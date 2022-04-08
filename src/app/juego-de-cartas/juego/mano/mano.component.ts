@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
-import { Carta } from '../../interfaces/carta.interface';
+import { Carta } from '../../../interfaces/carta.interface';
 
-import { CartasService } from '../services/cartas.service';
+import { CartasService } from '../../services/cartas.service';
+import { JuegoDeCartasComponent } from '../../juego-de-cartas.component';
 
 @Component({
   selector: 'app-mano',
@@ -18,13 +19,14 @@ export class ManoComponent implements OnInit {
   constructor(private cartasServices: CartasService) {}
   ngOnInit(): void {}
 
-  @Output() ComenzarJuego: EventEmitter<any> = new EventEmitter();
+  @Output() iniciarPartida: EventEmitter<any> = new EventEmitter();
+  @Output() CartaJugada: EventEmitter<Carta> = new EventEmitter();
 
   iniciarJuego() {
-    this.ComenzarJuego.emit();
+    this.iniciarPartida.emit();
   }
 
   JugarCarta(carta: Carta) {
-    this.cartasServices.jugarCarta(carta);
+    this.CartaJugada.emit(carta);
   }
 }

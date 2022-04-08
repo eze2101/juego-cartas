@@ -1,2 +1,6 @@
 <app-juego></app-juego>
-<app-mano (ComenzarJuego)="ComenzarJuego()"></app-mano>
+<app-mano
+  (iniciarPartida)="ComenzarJuego()"
+  ,
+  (CartaJugada)="jugarCartas($event)"
+></app-mano>

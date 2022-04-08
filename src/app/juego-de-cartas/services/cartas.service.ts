@@ -31,13 +31,13 @@ export class CartasService {
     return mazoMezclado;
   }
 
-  levantar() {
+  /*levantar() {
     if (this.mazoMezclado.length) {
       this.cartasEnMano.push(this.mazoMezclado.shift()!);
     }
-  }
+  }*/
 
-  jugarCarta(carta: Carta) {
+  /*jugarCarta(carta: Carta) {
     var index = this.cartasEnMano
       .map((card) => card.nombre)
       .indexOf(carta.nombre);
@@ -47,17 +47,17 @@ export class CartasService {
     } else {
       return;
     }
-  }
+  }*/
 
-  recuperarCarta(carta: Carta) {
+  /*recuperarCarta(carta: Carta) {
     var index = this.cartasEnCampo
       .map((card) => card.nombre)
       .indexOf(carta.nombre);
     this.cartasEnMano.push(carta);
     this.cartasEnCampo.splice(index, 1);
-  }
+  }*/
 
-  Combate() {
+  /*Combate() {
     if (this.cartasEnCampo.length === 2) {
       if (
         this.cartasEnCampo[0].dano >= this.cartasEnCampo[1].defensa &&
@@ -100,5 +100,5 @@ export class CartasService {
     this.cartasEnCampo.splice(index, 1);
 
     console.log(this.mazoDeDescarte);
-  }
+  }*/
 }

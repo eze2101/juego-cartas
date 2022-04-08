@@ -11,7 +11,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 import { CartaComponent } from './ver-cartas/carta/carta.component';
 import { CartasComponent } from './ver-cartas/cartas/cartas.component';
-import { ManoComponent } from './mano/mano.component';
+import { ManoComponent } from './juego/mano/mano.component';
 import { JuegoComponent } from './juego/juego.component';
 import { CartaEnManoComponent } from './ver-cartas/carta-en-mano/carta-en-mano.component';
 import { CartasEnJuegoComponent } from './ver-cartas/cartas-en-juego/cartas-en-juego.component';
@@ -19,6 +19,7 @@ import { CartasEnJuegoComponent } from './ver-cartas/cartas-en-juego/cartas-en-j
 import { CartasService } from './services/cartas.service';
 import { MessageService } from 'primeng/api';
 import { JuegoDeCartasComponent } from './juego-de-cartas.component';
+import { ManoOponenteComponent } from './juego/mano-oponente/mano-oponente.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { JuegoDeCartasComponent } from './juego-de-cartas.component';
     CartaEnManoComponent,
     CartasEnJuegoComponent,
     JuegoDeCartasComponent,
+    ManoOponenteComponent,
   ],
   imports: [
     CommonModule,
