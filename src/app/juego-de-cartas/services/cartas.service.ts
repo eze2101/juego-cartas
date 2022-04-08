@@ -5,7 +5,6 @@ import { Carta } from '../../interfaces/carta.interface';
   providedIn: 'root',
 })
 export class CartasService {
-  campoDeJuego: Carta[] = [];
   cartaMia: Carta;
   cartaOponente: Carta;
 
@@ -27,13 +26,10 @@ export class CartasService {
 
   cartaJugadaMia(carta: Carta) {
     this.cartaMia = carta;
-    this.campoDeJuego.push(carta);
     console.log(this.cartaMia);
-    console.log(this.campoDeJuego);
   }
 
   cartaJugadaOponente(carta: Carta) {
     this.cartaOponente = carta;
-    this.campoDeJuego.push(carta);
   }
 }

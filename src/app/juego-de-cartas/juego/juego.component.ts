@@ -8,12 +8,18 @@ import { Carta } from '../../interfaces/carta.interface';
   styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit {
-  cartasEnCampo: Carta[] = [];
+  cartaMia: Carta;
+  cartaOponente: Carta;
   constructor(private cartasService: CartasService) {}
 
   ngOnInit(): void {
-    this.cartasEnCampo = this.cartasService.campoDeJuego;
+    this.cartaMia = this.cartasService.cartaMia;
   }
 
-  RecuperarCarta(Carta: Carta) {}
+  RecuperarCarta(carta: Carta) {
+    if (carta === this.cartaMia) {
+      this.cartaMia=null
+    } else if (carta === this.cartaOponente)
+    
+  }
 }

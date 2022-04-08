@@ -15,7 +15,6 @@ export class ManoComponent implements OnInit {
   cartasEnMano: Carta[] = [];
   cementerio: Carta[] = [];
   cartasEnCampo: Carta[] = [];
-  pepino: Carta[];
 
   constructor(private cartasService: CartasService) {}
   ngOnInit(): void {
@@ -33,9 +32,12 @@ export class ManoComponent implements OnInit {
     if (this.cartasService.cartaMia == null) {
       this.cartasService.cartaJugadaMia(carta);
       console.log(this.cartasEnMano);
-      this.cartasEnMano = this.cartasEnMano.filter((item) => {
-        item.nombre !== carta.nombre;
-      });
+
+      var index = this.cartasEnMano
+        .map((card) => card.nombre)
+        .indexOf(carta.nombre);
+      this.cartasEnMano.splice(index, 1);
+
       console.log(this.cartasEnMano);
     }
   }
