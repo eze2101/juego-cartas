@@ -12,16 +12,32 @@ export class ManoComponent implements OnInit {
   private mazo: Carta[] = ListaCartas;
   Mazo: Carta[] = [...this.mazo];
   mazoMezclado: Carta[] = [];
+  cartasEnMano: Carta[] = [];
+  cementerio: Carta[] = [];
+  cartasEnCampo: Carta[] = [];
+  pepino: Carta[];
 
-  constructor(private carasService: CartasService) {}
+  constructor(private cartasService: CartasService) {}
   ngOnInit(): void {
     console.log(this.Mazo);
   }
 
-  mezclarCartas() {
+  iniciarJuego() {
     console.log(this.Mazo);
-    this.mazoMezclado = this.carasService.mezclarCartas(this.Mazo);
-    console.log(this.mazoMezclado);
+    this.mazoMezclado = this.cartasService.mezclarCartas(this.Mazo);
+
+    this.cartasEnMano = this.mazoMezclado.splice(0, 7);
+  }
+
+  jugarCarta(carta: Carta) {
+    if (this.cartasService.cartaMia == null) {
+      this.cartasService.cartaJugadaMia(carta);
+      console.log(this.cartasEnMano);
+      this.cartasEnMano = this.cartasEnMano.filter((item) => {
+        item.nombre !== carta.nombre;
+      });
+      console.log(this.cartasEnMano);
+    }
   }
 }
 /*manoInicial() {

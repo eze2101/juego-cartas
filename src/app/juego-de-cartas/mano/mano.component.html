@@ -1,8 +1,14 @@
-<button mat-button (click)="mezclarCartas()">comenzar juego</button>
+<button mat-button (click)="iniciarJuego()">comenzar juego</button>
 <span>Cartas en el Mazo: {{ mazoMezclado.length }}</span>
+<span>Cementerio: {{ cementerio.length }}</span>
 <footer class="mano">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
-    <div fxFlex="12" *ngFor="let carta of mazoMezclado.slice(0, 7)">
+    <div
+      fxFlex="12"
+      fxFlex.xs="30"
+      *ngFor="let carta of cartasEnMano"
+      (click)="jugarCarta(carta)"
+    >
       <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
     </div>
   </div>

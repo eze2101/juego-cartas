@@ -1,2 +1,13 @@
-<div class="campo"></div>
+<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px" class="campo">
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div
+      fxFlex="20"
+      fxFlex.xs="40"
+      *ngFor="let carta of cartasEnCampo"
+      (click)="RecuperarCarta(carta)"
+    >
+      <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
+    </div>
+  </div>
+</div>
 <app-mano></app-mano>

@@ -8,7 +8,7 @@ import { CartaComponent } from './ver-cartas/carta/carta.component';
 import { CartasComponent } from './ver-cartas/cartas/cartas.component';
 import { ManoComponent } from './mano/mano.component';
 import { JuegoComponent } from './juego/juego.component';
-import { CartaEnJuegoComponent } from './carta-en-juego/carta-en-juego.component';
+import { CartaEnJuegoComponent } from './ver-cartas/carta-en-juego/carta-en-juego.component';
 import { MazoComponent } from './mazo/mazo.component';
 import { CartasService } from './services/cartas.service';
 

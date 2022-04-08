@@ -5,15 +5,35 @@ import { Carta } from '../../interfaces/carta.interface';
   providedIn: 'root',
 })
 export class CartasService {
+  campoDeJuego: Carta[] = [];
+  cartaMia: Carta;
+  cartaOponente: Carta;
+
   mezclarCartas(mazo: Carta[]) {
-    var i, j, temp;
-    for (i = mazo.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = mazo[i];
-      mazo[i] = mazo[j];
-      mazo[j] = temp;
+    const mazomezclado: Carta[] = [];
+    for (let i = 0; i < mazo.length; i++) {
+      mazomezclado.push(mazo[i]);
     }
-    console.log(mazo);
-    return mazo;
+
+    var i, j, temp;
+    for (i = mazomezclado.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = mazomezclado[i];
+      mazomezclado[i] = mazomezclado[j];
+      mazomezclado[j] = temp;
+    }
+    return [...mazomezclado];
+  }
+
+  cartaJugadaMia(carta: Carta) {
+    this.cartaMia = carta;
+    this.campoDeJuego.push(carta);
+    console.log(this.cartaMia);
+    console.log(this.campoDeJuego);
+  }
+
+  cartaJugadaOponente(carta: Carta) {
+    this.cartaOponente = carta;
+    this.campoDeJuego.push(carta);
   }
 }
