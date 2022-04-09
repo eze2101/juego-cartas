@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Carta } from '../../interfaces/carta.interface';
 
-import { MessageService } from 'primeng/api';
 import { CartasService } from '../services/cartas.service';
 
 @Component({
@@ -12,12 +11,8 @@ import { CartasService } from '../services/cartas.service';
 })
 export class JuegoComponent implements OnInit {
   cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
-  cartaDevuelta: Carta[] = this.CartasService.cartaDevuelta;
 
-  constructor(
-    private CartasService: CartasService,
-    private messageService: MessageService
-  ) {}
+  constructor(private CartasService: CartasService) {}
 
   ngOnInit(): void {}
 

@@ -10,19 +10,29 @@ import { CartasService } from '../services/cartas.service';
   styleUrls: ['./mano.component.css'],
 })
 export class ManoComponent implements OnInit {
-  cartas: Carta[] = this.cartasServices.mazoMezclado;
-  cartasEnMano: Carta[] = this.cartasServices.cartasEnMano;
-  cartasEnDescarte: Carta[] = this.cartasServices.mazoDeDescarte;
-  iniciojuego = false;
+  mazo: Carta[] = this.cartasServices.mazo;
+  mazomezclado: Carta[] = [];
+  cartasEnMano: Carta[] = [];
+  cementerio: Carta[] = [];
 
   constructor(private cartasServices: CartasService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartasServices.mazoMezclado$.subscribe((resp) => {
+      this.mazomezclado = resp;
+    });
 
-  iniciarJuego() {
-    this.cartasServices.ComenzarJuego();
+    this.cartasServices.cartasEnMano$.subscribe((resp) => {
+      this.cartasEnMano = resp;
+    });
+
+    this.cartasServices.cementerio$.subscribe((resp) => {
+      this.cementerio = resp;
+    });
   }
 
-  @Output() cartasAlCampo: EventEmitter<Carta> = new EventEmitter();
+  iniciarJuego() {
+    this.cartasServices.ComenzarJuego(this.mazo);
+  }
 
   JugarCarta(carta: Carta) {
     this.cartasServices.jugarCarta(carta);
