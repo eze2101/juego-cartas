@@ -28,14 +28,12 @@ export class ManoComponent implements OnInit {
       this.cementerio.push(resp)
     );
 
-    this.cartasServices.levantar$.subscribe((resp) =>
-      this.cartasEnMano.push(this.mazoMezclado.shift()!)
-    );
+    this.cartasServices.levantar$.subscribe((resp) => this.levantar());
   }
 
   iniciarJuego() {
     this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo);
-    this.cartasEnMano = this.mazoMezclado.slice(0, 7);
+    this.cartasEnMano = this.mazoMezclado.splice(0, 7);
     this.cartasServices.juegoIniciado$.emit(true);
     this.cementerio = [];
   }
@@ -48,6 +46,13 @@ export class ManoComponent implements OnInit {
       this.cartasEnMano = comprobar;
     }
     this.cartasServices.jugarCarta$.emit(true);
+  }
+
+  levantar() {
+    console.log(this.mazoMezclado);
+    console.log(this.mazoMezclado[0]);
+    this.cartasEnMano.push(this.mazoMezclado.shift()!);
+    console.log(this.mazoMezclado[0]);
   }
 }
 /*mazo: Carta[] = this.cartasServices.mazo;

@@ -27,7 +27,7 @@ export class OponenteComponent implements OnInit {
     this.cartasServices.juegoIniciado$.subscribe(
       (resp) => (
         (this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo)),
-        (this.cartasEnMano = this.mazoMezclado.slice(0, 7)),
+        (this.cartasEnMano = this.mazoMezclado.splice(0, 7)),
         (this.cementerio = [])
       )
     );

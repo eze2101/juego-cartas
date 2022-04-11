@@ -98,37 +98,6 @@ export class CartasService {
     }
   }
 
-  levantar() {
-    if (this.mazoMezclado.length) {
-      this.cartasEnMano.push(this.mazoMezclado.shift()!);
-    }
-  }
-
-  /*Combate() {
-    if (this.cartasEnCampo.length === 2) {
-      if (
-        this.cartasEnCampo[0].dano >= this.cartasEnCampo[1].defensa &&
-        this.cartasEnCampo[1].dano >= this.cartasEnCampo[0].defensa
-      ) {
-        this.cartaDerrotada(this.cartasEnCampo[1]);
-        this.cartaDerrotada(this.cartasEnCampo[0]);
-        this.levantar();
-        this.levantar();
-
-        return;
-      } else if (this.cartasEnCampo[0].dano >= this.cartasEnCampo[1].defensa) {
-        this.cartaDerrotada(this.cartasEnCampo[1]);
-        this.levantar();
-
-        return;
-      } else if (this.cartasEnCampo[1].dano >= this.cartasEnCampo[0].defensa) {
-        this.cartaDerrotada(this.cartasEnCampo[0]);
-        this.levantar();
-        return;
-      } else return this.Empate();
-    }
-  }*/
-
   combate() {
     if (this.cartasEnCampo.length === 2) {
       if (
