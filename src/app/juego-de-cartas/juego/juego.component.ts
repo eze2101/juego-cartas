@@ -17,10 +17,10 @@ export class JuegoComponent implements OnInit {
   ngOnInit(): void {}
 
   RecuperarCarta(carta: Carta) {
-    this.CartasService.recuperarCarta(carta);
+    this.CartasService.recuperarCartaMia(carta);
   }
 
   combate() {
-    this.CartasService.Combate();
+    this.CartasService.combate();
   }
 }

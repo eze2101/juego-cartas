@@ -1,0 +1,9 @@
+<footer class="mano">
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="12" fxFlex.xs="30" *ngFor="let carta of cartasEnMano">
+      <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
+    </div>
+  </div>
+</footer>
+<span>cartas en mazo: {{ mazoMezclado.length }}</span>
+<span>cartas en cementerio: {{ cementerio.length }}</span>

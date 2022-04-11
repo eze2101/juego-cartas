@@ -18,6 +18,7 @@ import { CartasEnJuegoComponent } from './ver-cartas/cartas-en-juego/cartas-en-j
 
 import { CartasService } from './services/cartas.service';
 import { MessageService } from 'primeng/api';
+import { OponenteComponent } from './oponente/oponente.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MessageService } from 'primeng/api';
     JuegoComponent,
     CartaEnManoComponent,
     CartasEnJuegoComponent,
+    OponenteComponent,
   ],
   imports: [
     CommonModule,
