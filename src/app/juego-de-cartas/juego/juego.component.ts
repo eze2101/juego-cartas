@@ -16,10 +16,6 @@ export class JuegoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  RecuperarCarta(carta: Carta) {
-    this.CartasService.recuperarCartaMia(carta);
-  }
-
   combate() {
     this.CartasService.combate();
   }

@@ -76,7 +76,7 @@ export class CartasService {
     return null;
   }
 
-  recuperarCartaMia(carta: Carta) {
+  /*recuperarCartaMia(carta: Carta) {
     var index = this.cartasEnCampo
       .map((card) => card.nombre)
       .indexOf(carta.nombre);
@@ -85,21 +85,21 @@ export class CartasService {
       this.cartasEnCampo.splice(index, 1);
       delete this.cartaMia;
     }
-  }
+  }*/
 
-  recuperarCartaOponente(carta: Carta) {
-    var index = this.cartasEnCampo
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
-    if (carta === this.cartaOponente) {
+  recuperarCarta() {
+    setTimeout(() => {
       this.cartaOponente$.emit(this.cartaOponente);
-      this.cartasEnCampo.splice(index, 1);
+      this.cartaMia$.emit(this.cartaMia);
+      this.cartasEnCampo.splice(0, 2);
       delete this.cartaOponente;
-    }
+      delete this.cartaMia;
+    }, 1500);
   }
 
   combate() {
     if (this.cartasEnCampo.length === 2) {
+      //mueren ambas
       if (
         this.cartaMia.dano >= this.cartaOponente.defensa &&
         this.cartaMia.defensa <= this.cartaOponente.dano
@@ -109,15 +109,21 @@ export class CartasService {
         this.levantar$.emit(true);
         this.levantarOponente$.emit(true);
         return;
+        //gana la mia
       } else if (this.cartaMia.dano >= this.cartaOponente.defensa) {
         this.cartaDerrotadaOponente(this.cartaOponente);
         this.levantarOponente$.emit(true);
+        setTimeout(() => {
+          this.jugarCarta$.emit(true);
+        }, 1500);
         return;
+        //gana el oponente
       } else if (this.cartaMia.defensa <= this.cartaOponente.dano) {
         this.cartaDerrotadaMia(this.cartaMia);
         this.levantar$.emit(true);
         return;
       }
+      this.recuperarCarta();
       return this.Empate();
     }
   }
