@@ -1,0 +1,6 @@
+.tarjetaOculta {
+  background-image: url("/assets/imagenes/mazo.jpg");
+  background-size: 100% 100%;
+  height: 70px;
+  margin-bottom: 10px;
+}

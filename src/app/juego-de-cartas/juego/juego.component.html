@@ -1,6 +1,6 @@
 <app-oponente></app-oponente>
 
-<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px" class="campo">
+<div fxLayout="column" fxLayoutGap="20px" class="campo">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
     <div
       fxFlex="20"
@@ -12,7 +12,12 @@
     </div>
   </div>
   <div class="contenedorBoton">
-    <button mat-button (click)="combate()" class="boton">
+    <button
+      mat-button
+      (click)="combate()"
+      class="boton"
+      *ngIf="cartasEnCampo.length === 2"
+    >
       Comenzar Combate
     </button>
     <p-toast position="top-center"> </p-toast>

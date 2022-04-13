@@ -1,7 +1,7 @@
 .campo {
   width: 100%;
-  height: 55%;
-  background-color: antiquewhite;
+  height: 70%;
+  justify-content: flex-end;
 }
 
 .contenedorBoton {
@@ -15,6 +15,7 @@
   justify-content: center;
   background-color: brown;
   border: 1px solid black;
+  align-items: center;
 }
 
 .p-toast .p-toast-message {

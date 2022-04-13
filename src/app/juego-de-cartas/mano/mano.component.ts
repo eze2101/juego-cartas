@@ -37,6 +37,11 @@ export class ManoComponent implements OnInit {
     this.cartasServices.juegoIniciado$.emit(true);
     this.cementerio = [];
   }
+  textoBoton() {
+    var texto = document.getElementById('boton1');
+    if (texto.innerText == 'Comenzar Juego')
+      texto.innerText = 'Reiniciar Juego';
+  }
 
   JugarCarta(carta: Carta, mazo: Carta[]) {
     var comprobar;

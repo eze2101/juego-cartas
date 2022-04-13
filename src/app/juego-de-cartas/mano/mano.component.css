@@ -1,10 +1,49 @@
 .mano {
   width: 100%;
   height: auto;
-  background-color: blueviolet;
+  background-color: rgba(137, 43, 226, 0.75);
 }
 
 .mat-card {
   width: 100px !important;
   height: 110px !important;
+}
+
+span {
+  font-size: 20px;
+  color: white;
+  font-family: cursive;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  span {
+    font-size: 13px;
+  }
+}
+
+.mazo {
+  height: 80px;
+  width: 60px;
+  border-radius: 4px;
+}
+
+.mazos {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cementerio {
+  align-items: flex-end;
+  width: 25%;
+}
+
+.cartas {
+  width: 25%;
+}
+.boton {
+  display: flex;
+  justify-content: center;
+  background-color: brown;
+  border: 1px solid black;
+  height: 36px;
+  margin-bottom: 15px;
 }
