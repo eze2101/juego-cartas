@@ -56,7 +56,7 @@ span {
     border: 1px solid black;
     height: 36px;
     position: absolute;
-    bottom: 290px;
+    top: 250px;
     left: 15px;
   }
 }

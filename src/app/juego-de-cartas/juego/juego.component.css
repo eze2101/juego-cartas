@@ -7,7 +7,6 @@
 .contenedorBoton {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .boton {
@@ -16,18 +15,20 @@
   background-color: brown;
   border: 1px solid black;
   align-items: center;
+  position: relative;
+  top: 20px;
 }
 @media (min-width: 600px) {
-  .boton {
+  /* .boton {
     display: flex;
     justify-content: center;
     background-color: brown;
     border: 1px solid black;
     align-items: center;
     position: absolute;
-    bottom: 290px;
-    right: 15px;
-  }
+    top: 250px;
+    right: 20px;
+  } */
 
   .campo {
     width: 100%;
