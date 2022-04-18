@@ -2,11 +2,7 @@
   width: 100%;
   height: auto;
   background-color: rgba(137, 43, 226, 0.75);
-}
-
-.mat-card {
-  width: 100px !important;
-  height: 110px !important;
+  justify-content: space-between;
 }
 
 span {
@@ -24,6 +20,7 @@ span {
   height: 80px;
   width: 60px;
   border-radius: 4px;
+  margin-top: 5px;
 }
 
 .mazos {
@@ -33,30 +30,14 @@ span {
 
 .cementerio {
   align-items: flex-end;
-  width: 25%;
 }
 
-.cartas {
-  width: 25%;
-}
-.boton {
-  display: flex;
-  justify-content: center;
-  background-color: brown;
-  border: 1px solid black;
-  height: 36px;
-  margin-bottom: 15px;
+.cartasEnMano {
+  justify-content: space-evenly;
 }
 
 @media (min-width: 600px) {
-  .boton {
-    display: flex;
-    justify-content: center;
-    background-color: brown;
-    border: 1px solid black;
-    height: 36px;
-    position: absolute;
-    bottom: 290px;
-    left: 15px;
+  .cartas {
+    margin-right: 60px;
   }
 }

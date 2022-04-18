@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartasService } from '../services/cartas.service';
+
 import { Carta } from '../../interfaces/carta.interface';
+
+import { CartasService } from '../services/cartas.service';
 
 @Component({
   selector: 'app-juego',
@@ -8,18 +10,13 @@ import { Carta } from '../../interfaces/carta.interface';
   styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit {
-  cartaMia: Carta;
-  cartaOponente: Carta;
-  constructor(private cartasService: CartasService) {}
+  cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
 
-  ngOnInit(): void {
-    this.cartaMia = this.cartasService.cartaMia;
-  }
+  constructor(private CartasService: CartasService) {}
 
-  RecuperarCarta(carta: Carta) {
-    if (carta === this.cartaMia) {
-      this.cartaMia=null
-    } else if (carta === this.cartaOponente)
-    
+  ngOnInit(): void {}
+
+  combate() {
+    this.CartasService.combate();
   }
 }

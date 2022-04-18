@@ -1,13 +1,22 @@
-<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px" class="campo">
+<app-oponente></app-oponente>
+
+<div fxLayout="column" fxLayoutGap="20px" class="campo">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
-    <div
-      fxFlex="20"
-      fxFlex.xs="40"
-      *ngFor="let carta of cartasEnCampo"
-      (click)="RecuperarCarta(carta)"
-    >
-      <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
+    <div fxFlex="18" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo">
+      <app-cartas-en-juego [carta]="carta"></app-cartas-en-juego>
     </div>
   </div>
+  <div class="contenedorBoton">
+    <button
+      mat-button
+      (click)="combate()"
+      class="boton"
+      *ngIf="cartasEnCampo.length === 2"
+    >
+      Comenzar Combate
+    </button>
+    <p-toast position="top-center"> </p-toast>
+  </div>
 </div>
-<app-mano [cartaDevuelta]="cartaMia"></app-mano>
+
+<app-mano></app-mano>

@@ -1,5 +1,44 @@
 .campo {
   width: 100%;
-  height: 70%;
-  background-color: antiquewhite;
+  height: 50%;
+  justify-content: flex-end;
+}
+
+.contenedorBoton {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.boton {
+  display: flex;
+  justify-content: center;
+  background-color: brown;
+  border: 1px solid black;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  .boton {
+    display: flex;
+    justify-content: center;
+    background-color: brown;
+    border: 1px solid black;
+    align-items: center;
+    position: absolute;
+    bottom: 290px;
+    right: 15px;
+  }
+
+  .campo {
+    width: 100%;
+    height: 40%;
+    justify-content: flex-end;
+  }
+}
+
+.p-toast .p-toast-message {
+  background: #0d4b32 !important;
+  border: solid #15684d;
+  border-width: 0 0 0 6px;
+  color: #1ea97c;
 }

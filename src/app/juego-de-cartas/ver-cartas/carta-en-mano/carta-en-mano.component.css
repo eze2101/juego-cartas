@@ -1,0 +1,14 @@
+.imagen {
+  width: 75px;
+  height: 75px;
+}
+
+.mat-card {
+  margin-top: 15px;
+  background-color: bisque;
+  padding-top: 5px;
+}
+
+.footer {
+  justify-content: space-around;
+}

@@ -1,15 +1,33 @@
-<button mat-button (click)="iniciarJuego()">comenzar juego</button>
-<span>Cartas en el Mazo: {{ mazoMezclado.length }}</span>
-<span>Cementerio: {{ cementerio.length }}</span>
-<footer class="mano">
+<div fxLayout="row" class="mazos">
+  <div fxLayout="column" class="cartas">
+    <img src="/assets/imagenes/mazo.jpg" alt="mazo" class="mazo" />
+    <span>Mazo: {{ mazoMezclado.length }}</span>
+  </div>
+  <div fxLayout="" class="botton">
+    <button
+      mat-button
+      id="boton1"
+      (click)="iniciarJuego(); textoBoton()"
+      class="boton"
+    >
+      Comenzar Juego
+    </button>
+  </div>
+  <div fxLayout="column" class="cementerio">
+    <img src="/assets/imagenes/mazo.jpg" alt="cementerio" class="mazo" />
+    <span>Cementerio: {{ cementerio.length }}</span>
+  </div>
+</div>
+
+<div class="mano">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
     <div
       fxFlex="12"
       fxFlex.xs="30"
       *ngFor="let carta of cartasEnMano"
-      (click)="jugarCarta(carta)"
+      (click)="JugarCarta(carta, cartasEnMano)"
     >
-      <app-carta-en-juego [carta]="carta"></app-carta-en-juego>
+      <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
     </div>
   </div>
-</footer>
+</div>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+
 import { Carta } from '../../interfaces/carta.interface';
-import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
+
 import { CartasService } from '../services/cartas.service';
+import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
 
 @Component({
   selector: 'app-mano',
@@ -9,43 +11,77 @@ import { CartasService } from '../services/cartas.service';
   styleUrls: ['./mano.component.css'],
 })
 export class ManoComponent implements OnInit {
-  private mazo: Carta[] = ListaCartas;
-  Mazo: Carta[] = [...this.mazo];
+  private cartas: Carta[] = ListaCartas;
+  mazo: Carta[] = [...this.cartas];
   mazoMezclado: Carta[] = [];
-  cartasEnMano: Carta[] = [];
   cementerio: Carta[] = [];
-  cartasEnCampo: Carta[] = [];
 
-  constructor(private cartasService: CartasService) {}
+  cartasEnMano: Carta[] = [];
+
+  constructor(private cartasServices: CartasService) {}
   ngOnInit(): void {
-    console.log(this.Mazo);
+    this.cartasServices.cartaMia$.subscribe((resp) => {
+      this.cartasEnMano.push(resp);
+    });
+
+    this.cartasServices.cementerioMio$.subscribe((resp) =>
+      this.cementerio.push(resp)
+    );
+
+    this.cartasServices.levantar$.subscribe((resp) => this.levantar());
   }
 
   iniciarJuego() {
-    console.log(this.Mazo);
-    this.mazoMezclado = this.cartasService.mezclarCartas(this.Mazo);
-
+    this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo);
     this.cartasEnMano = this.mazoMezclado.splice(0, 7);
+    this.cartasServices.juegoIniciado$.emit(true);
+    this.cementerio = [];
+  }
+  textoBoton() {
+    var texto = document.getElementById('boton1');
+    if (texto.innerText == 'Comenzar Juego')
+      texto.innerText = 'Reiniciar Juego';
   }
 
-  jugarCarta(carta: Carta) {
-    if (this.cartasService.cartaMia == null) {
-      this.cartasService.cartaJugadaMia(carta);
-      console.log(this.cartasEnMano);
+  JugarCarta(carta: Carta, mazo: Carta[]) {
+    var comprobar;
+    comprobar = this.cartasServices.jugarCartaMia(carta, mazo);
 
-      var index = this.cartasEnMano
-        .map((card) => card.nombre)
-        .indexOf(carta.nombre);
-      this.cartasEnMano.splice(index, 1);
-
-      console.log(this.cartasEnMano);
+    if (comprobar !== null) {
+      this.cartasEnMano = comprobar;
     }
+    this.cartasServices.jugarCarta$.emit(true);
+  }
+
+  levantar() {
+    if (this.mazoMezclado.length)
+      this.cartasEnMano.push(this.mazoMezclado.shift()!);
   }
 }
-/*manoInicial() {
-    for (let index = 0; index < 7; index++) {
-      this.cartasIniciales.push(this.cartas[index]);
-    }
-    console.log(this.cartasIniciales);
-    return this.cartasIniciales;
+/*mazo: Carta[] = this.cartasServices.mazo;
+  mazomezclado: Carta[] = [];
+  cartasEnMano: Carta[] = [];
+  cementerio: Carta[] = [];
+
+  constructor(private cartasServices: CartasService) {}
+  ngOnInit(): void {
+    this.cartasServices.mazoMezclado$.subscribe((resp) => {
+      this.mazomezclado = resp;
+    });
+
+    this.cartasServices.cartasEnMano$.subscribe((resp) => {
+      this.cartasEnMano = resp;
+    });
+
+    this.cartasServices.cementerio$.subscribe((resp) => {
+      this.cementerio = resp;
+    });
+  }
+
+  iniciarJuego() {
+    this.cartasServices.ComenzarJuego(this.mazo);
+  }
+
+  JugarCarta(carta: Carta) {
+    this.cartasServices.jugarCarta(carta);
   }*/
