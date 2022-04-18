@@ -60,3 +60,18 @@ span {
     left: 15px;
   }
 }
+
+@media (min-width: 929px) {
+  .mazos {
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 54px;
+  }
+}
+@media (min-width: 600px) and (max-width: 928px) {
+  .mazos {
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 26px;
+  }
+}

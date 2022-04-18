@@ -20,9 +20,10 @@
 </div>
 
 <div class="mano">
-  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="10px">
     <div
       fxFlex="12"
+      fx
       fxFlex.xs="30"
       *ngFor="let carta of cartasEnMano"
       (click)="JugarCarta(carta, cartasEnMano)"
