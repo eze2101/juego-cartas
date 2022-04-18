@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header fxLayoutAlign="center">
+    <mat-card-title>{{ carta.nombre }}</mat-card-title>
+    <mat-card-subtitle>{{ carta.tipo }}</mat-card-subtitle>
+  </mat-card-header>
+  <div fxLayoutAlign="center">
+    <img
+      mat-card-image
+      src="https://robohash.org/{{ carta.nombre }}?set=set4"
+      class="imagen"
+    />
+  </div>
+
+  <mat-card-footer>
+    <div fxLayout="row wrap" class="footer">
+      <div>daño: {{ carta.dano }}</div>
+
+      <div>defensa: {{ carta.defensa }}</div>
+    </div>
+  </mat-card-footer>
+</mat-card>
