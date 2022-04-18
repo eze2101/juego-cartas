@@ -3,6 +3,8 @@
 html,
 body {
   height: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 body {
   background: url("/assets/imagenes/fondo2.jpg") no-repeat center center fixed;

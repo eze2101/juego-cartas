@@ -49,9 +49,11 @@ export class OponenteComponent implements OnInit {
       this.cementerio.push(resp)
     );
 
-    this.cartasServices.levantarOponente$.subscribe((resp) =>
-      this.cartasEnMano.push(this.mazoMezclado.shift()!)
-    );
+    this.cartasServices.levantarOponente$.subscribe((resp) => {
+      if (this.mazoMezclado.length) {
+        this.cartasEnMano.push(this.mazoMezclado.shift()!);
+      }
+    });
   }
 
   Comprobar(comprobar: Carta[] | null) {

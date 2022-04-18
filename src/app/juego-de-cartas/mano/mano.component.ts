@@ -54,10 +54,8 @@ export class ManoComponent implements OnInit {
   }
 
   levantar() {
-    console.log(this.mazoMezclado);
-    console.log(this.mazoMezclado[0]);
-    this.cartasEnMano.push(this.mazoMezclado.shift()!);
-    console.log(this.mazoMezclado[0]);
+    if (this.mazoMezclado.length)
+      this.cartasEnMano.push(this.mazoMezclado.shift()!);
   }
 }
 /*mazo: Carta[] = this.cartasServices.mazo;

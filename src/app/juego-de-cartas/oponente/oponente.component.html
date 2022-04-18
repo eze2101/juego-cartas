@@ -1,15 +1,21 @@
-<div class="mano">
-  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
-    <div fxFlex="8" *ngFor="let carta of cartasEnMano">
-      <app-cartas-oponente [carta]="carta"></app-cartas-oponente>
-    </div>
-  </div>
-</div>
-<div fxLayout="row wrap" class="mazos">
+<div class="mano" fxLayout="row nowrap">
   <div fxLayout="column" class="cartas">
     <img src="/assets/imagenes/mazo.jpg" alt="mazo" class="mazo" />
     <span>Mazo: {{ mazoMezclado.length }}</span>
   </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="20px"
+    fxLayoutGap.xs="2px"
+    fxFlex="70"
+    class="cartasEnMano"
+  >
+    <div fxFlex="10" fxFlex.xs="5px" *ngFor="let carta of cartasEnMano">
+      <app-cartas-oponente [carta]="carta"></app-cartas-oponente>
+    </div>
+  </div>
+
   <div fxLayout="column" class="cementerio">
     <img src="/assets/imagenes/mazo.jpg" alt="cementerio" class="mazo" />
     <span>Cementerio: {{ cementerio.length }}</span>

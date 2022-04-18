@@ -76,17 +76,6 @@ export class CartasService {
     return null;
   }
 
-  /*recuperarCartaMia(carta: Carta) {
-    var index = this.cartasEnCampo
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
-    if (carta === this.cartaMia) {
-      this.cartaMia$.emit(this.cartaMia);
-      this.cartasEnCampo.splice(index, 1);
-      delete this.cartaMia;
-    }
-  }*/
-
   recuperarCarta() {
     setTimeout(() => {
       this.cartaOponente$.emit(this.cartaOponente);
