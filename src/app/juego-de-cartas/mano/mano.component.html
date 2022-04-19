@@ -20,15 +20,28 @@
 </div>
 
 <div class="mano">
-  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="10px">
+  <div
+    fxLayout="row wrap"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+    cdkDropList
+    id="listaMano"
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListData]="cartasEnMano"
+    cdkDropListConnectedTo="listaCampo"
+  >
     <div
       fxFlex="12"
-      fx
+      fxLayoutGap="10px"
       fxFlex.xs="30"
+      cdkDrag
       *ngFor="let carta of cartasEnMano"
       (click)="JugarCarta(carta, cartasEnMano)"
+      class="objetoCarta"
     >
       <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
     </div>
   </div>
 </div>
+<!-- (cdkDropListDropped)="drop($event)" -->

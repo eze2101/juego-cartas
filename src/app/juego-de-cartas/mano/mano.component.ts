@@ -1,4 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 import { Carta } from '../../interfaces/carta.interface';
 
@@ -17,6 +22,8 @@ export class ManoComponent implements OnInit {
   cementerio: Carta[] = [];
 
   cartasEnMano: Carta[] = [];
+
+  @Input() listado;
 
   constructor(private cartasServices: CartasService) {}
   ngOnInit(): void {
@@ -57,31 +64,22 @@ export class ManoComponent implements OnInit {
     if (this.mazoMezclado.length)
       this.cartasEnMano.push(this.mazoMezclado.shift()!);
   }
+
+  drop(event: CdkDragDrop<Carta[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      console.log('hola');
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 }
-/*mazo: Carta[] = this.cartasServices.mazo;
-  mazomezclado: Carta[] = [];
-  cartasEnMano: Carta[] = [];
-  cementerio: Carta[] = [];
-
-  constructor(private cartasServices: CartasService) {}
-  ngOnInit(): void {
-    this.cartasServices.mazoMezclado$.subscribe((resp) => {
-      this.mazomezclado = resp;
-    });
-
-    this.cartasServices.cartasEnMano$.subscribe((resp) => {
-      this.cartasEnMano = resp;
-    });
-
-    this.cartasServices.cementerio$.subscribe((resp) => {
-      this.cementerio = resp;
-    });
-  }
-
-  iniciarJuego() {
-    this.cartasServices.ComenzarJuego(this.mazo);
-  }
-
-  JugarCarta(carta: Carta) {
-    this.cartasServices.jugarCarta(carta);
-  }*/
