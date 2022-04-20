@@ -1,20 +1,19 @@
 <app-oponente></app-oponente>
 
-<div fxLayout="column" class="campo">
-  <div
-    fxLayout="row wrap"
-    fxLayoutAlign="center"
-    fxLayoutGap="20px"
-    cdkDropList
-    id="listaCampo"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListData]="cartamia"
-    [cdkDropListConnectedTo]="['listaCampo']"
-  >
-    <div fxFlex="18" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo" cdkDrag>
-      <app-cartas-en-juego [carta]="carta"></app-cartas-en-juego>
-    </div>
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="center"
+  cdkDropList
+  id="listaCampo"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListData]="cartamia"
+  [cdkDropListConnectedTo]="['listaCampo']"
+  class="lista"
+>
+  <div fxFlex="20" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo" cdkDrag>
+    <app-cartas-en-juego [carta]="carta"></app-cartas-en-juego>
   </div>
+
   <div class="contenedorBoton">
     <button
       mat-button
@@ -28,7 +27,7 @@
   </div>
 </div>
 
-<app-mano listado="LIstaCampo"></app-mano>
+<app-mano></app-mano>
 
 <!-- id="LIstaCampo"
     #LIstaCampo="cdkDropList"

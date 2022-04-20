@@ -73,7 +73,6 @@ export class ManoComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      console.log('hola');
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

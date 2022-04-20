@@ -1,12 +1,9 @@
-.campo {
-  width: 100%;
-  height: 50%;
-  justify-content: flex-end;
-}
-
 .contenedorBoton {
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 410px;
 }
 
 .boton {
@@ -15,25 +12,34 @@
   background-color: brown;
   border: 1px solid black;
   align-items: center;
-  position: relative;
-  top: 20px;
 }
 @media (min-width: 600px) {
-  /* .boton {
+  .contenedorBoton {
     display: flex;
     justify-content: center;
-    background-color: brown;
-    border: 1px solid black;
     align-items: center;
     position: absolute;
-    top: 250px;
-    right: 20px;
-  } */
+    bottom: 180px;
+  }
 
-  .campo {
+  .lista {
     width: 100%;
     height: 40%;
-    justify-content: flex-end;
+  }
+}
+
+@media (max-height: 600px) {
+  .contenedorBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 280px;
+    right: 40px;
+  }
+  .lista {
+    width: 100%;
+    height: 55%;
   }
 }
 
