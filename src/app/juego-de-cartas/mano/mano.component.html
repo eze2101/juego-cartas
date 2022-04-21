@@ -43,5 +43,18 @@
       <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
     </div>
   </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div
+      fxFlex="12"
+      fxLayoutGap="10px"
+      fxFlex.xs="30"
+      *ngFor="let carta of cartasEnMano"
+      (click)="JugarCarta(carta, cartasEnMano)"
+      class="objetoCarta1"
+    >
+      <app-carta-en-mano [carta]="carta"></app-carta-en-mano>
+    </div>
+  </div>
 </div>
 <!-- (cdkDropListDropped)="drop($event)" -->

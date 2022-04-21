@@ -59,6 +59,10 @@ span {
     top: 250px;
     left: 15px;
   }
+
+  .objetoCarta1 {
+    display: none;
+  }
 }
 
 @media (min-width: 929px) {
@@ -78,6 +82,12 @@ span {
 
 .objetoCarta {
   cursor: pointer;
+}
+
+@media (max-width: 599px) {
+  .objetoCarta {
+    display: none;
+  }
 }
 
 .cdk-drag-preview {

@@ -13,6 +13,11 @@
   border: 1px solid black;
   align-items: center;
 }
+
+.lista {
+  width: 100%;
+  height: 40%;
+}
 @media (min-width: 600px) {
   .contenedorBoton {
     display: flex;
