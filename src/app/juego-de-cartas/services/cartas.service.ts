@@ -113,6 +113,13 @@ export class CartasService {
         return;
       }
       this.recuperarCarta();
+      const combateBoton = document.getElementById(
+        'combateBoton'
+      ) as HTMLButtonElement;
+      combateBoton.disabled = true;
+      setTimeout(() => {
+        combateBoton.disabled = false;
+      }, 1500);
       return this.Empate();
     }
   }
