@@ -52,6 +52,8 @@ export class OponenteComponent implements OnInit {
     this.cartasServices.levantarOponente$.subscribe((resp) => {
       if (this.mazoMezclado.length) {
         this.cartasEnMano.push(this.mazoMezclado.shift()!);
+      } else if (!this.cartasEnMano.length) {
+        this.cartasServices.ganaste();
       }
     });
   }

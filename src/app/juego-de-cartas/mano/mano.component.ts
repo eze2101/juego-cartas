@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -24,6 +24,8 @@ export class ManoComponent implements OnInit {
   cartasEnMano: Carta[] = [];
 
   @Input() listado;
+
+  Perdi$ = new EventEmitter<boolean>();
 
   constructor(private cartasServices: CartasService) {}
   ngOnInit(): void {
@@ -61,8 +63,11 @@ export class ManoComponent implements OnInit {
   }
 
   levantar() {
-    if (this.mazoMezclado.length)
+    if (this.mazoMezclado.length) {
       this.cartasEnMano.push(this.mazoMezclado.shift()!);
+    } else if (!this.cartasEnMano.length) {
+      this.cartasServices.perdiste();
+    }
   }
 
   drop(event: CdkDragDrop<Carta[]>) {

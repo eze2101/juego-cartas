@@ -105,11 +105,13 @@ export class CartasService {
         setTimeout(() => {
           this.jugarCarta$.emit(true);
         }, 1500);
+
         return;
         //gana el oponente
       } else if (this.cartaMia.defensa <= this.cartaOponente.dano) {
         this.cartaDerrotadaMia(this.cartaMia);
         this.levantar$.emit(true);
+
         return;
       }
       this.recuperarCarta();
@@ -122,6 +124,24 @@ export class CartasService {
       }, 1500);
       return this.Empate();
     }
+  }
+
+  perdiste() {
+    this.MessageService.add({
+      severity: 'success',
+      summary: 'Empate',
+      detail: 'PERDISTE!',
+      sticky: true,
+    });
+  }
+
+  ganaste() {
+    this.MessageService.add({
+      severity: 'success',
+      summary: 'Empate',
+      detail: 'GANASTE!!!',
+      sticky: true,
+    });
   }
 
   Empate() {
