@@ -11,7 +11,7 @@
   class="lista"
 >
   <div fxFlex="20" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo" cdkDrag>
-    <app-cartas-en-juego [carta]="carta"></app-cartas-en-juego>
+    <app-carta [carta]="carta" estilos="juego"></app-carta>
   </div>
 
   <div class="contenedorBoton">

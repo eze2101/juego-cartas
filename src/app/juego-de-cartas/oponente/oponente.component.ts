@@ -11,7 +11,9 @@ import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
 })
 export class OponenteComponent implements OnInit {
   private cartas: Carta[] = ListaCartas;
-  mazo: Carta[] = [...this.cartas];
+  mazo: Carta[] = this.cartas.map((carta) => {
+    return { ...carta };
+  });
 
   juegoIniciado = false;
   comprobar: Carta[] | null = null;
@@ -24,9 +26,14 @@ export class OponenteComponent implements OnInit {
   constructor(private cartasServices: CartasService) {}
 
   ngOnInit(): void {
+    console.log(this.mazo);
     this.cartasServices.juegoIniciado$.subscribe(
       (resp) => (
         (this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo)),
+        (this.mazoMezclado = this.asignarJugador(
+          this.mazoMezclado,
+          'oponente'
+        )),
         (this.cartasEnMano = this.mazoMezclado.splice(0, 7)),
         (this.cementerio = [])
       )
@@ -55,6 +62,13 @@ export class OponenteComponent implements OnInit {
       } else if (!this.cartasEnMano.length) {
         this.cartasServices.ganaste();
       }
+    });
+  }
+
+  asignarJugador(mazo: Carta[], prop: string): Carta[] {
+    return mazo.map((carta) => {
+      carta.propietario = prop;
+      return carta;
     });
   }
 

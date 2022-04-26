@@ -1,13 +1,89 @@
-.imagen {
-  width: 150px;
-  height: 150px;
+/* Mano */
+.mano .imagen {
+  width: 75px;
+  height: 75px;
 }
 
-.mat-card {
+.mano .mat-card {
   margin-top: 15px;
-  background-color: bisque;
+  background-color: rgb(65, 255, 80);
+  padding-top: 5px;
 }
 
-.footer {
+.mano .footer {
   justify-content: space-around;
+}
+
+/* Juego */
+.juego .imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
+.juego .mat-card {
+  margin: 10px;
+  background-color: bisque;
+  padding-top: 5px;
+}
+
+.juego .footer {
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+/* Listado */
+
+.listado .imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
+.listado .mat-card {
+  margin: 10px;
+  background-color: bisque;
+  padding-top: 5px;
+}
+
+.listado .footer {
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+/* Mia */
+
+.Mia .imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
+.Mia .mat-card {
+  margin: 10px;
+  background-color: rgb(60, 60, 233);
+  padding-top: 5px;
+}
+
+.Mia .footer {
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+/* Oponente */
+.Oponent .imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
+.Oponent .mat-card {
+  margin: 10px;
+  background-color: rgb(204, 41, 41);
+  padding-top: 5px;
+}
+
+.Oponent .footer {
+  justify-content: space-around;
+  margin-bottom: 8px;
 }

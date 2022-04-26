@@ -2,31 +2,32 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 import { Carta } from 'src/app/interfaces/carta.interface';
 
-import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartasService {
-  private cartas: Carta[] = ListaCartas;
-  mazo: Carta[] = [...this.cartas];
+  mazoMezclado: Carta[] = [];
+  cementerio: Carta[] = [];
+  cartasEnMano: Carta[] = [];
+  cartaMia: any;
+  cartaOponente: any;
 
   juegoIniciado$ = new EventEmitter<boolean>();
   jugarCarta$ = new EventEmitter<boolean>();
 
-  mazoMezclado: Carta[] = [];
-  cementerio: Carta[] = [];
-
-  cartasEnMano: Carta[] = [];
-  cartasEnCampo: Carta[] = [];
+  cartasEnCampo$ = new EventEmitter<Carta>();
+  vaciarCampo$ = new EventEmitter();
 
   cartaMia$ = new EventEmitter<Carta>();
-  cartaMia: any;
   cartaOponente$ = new EventEmitter<Carta>();
-  cartaOponente: any;
+
+  cartaDerrotada$ = new EventEmitter<Carta>();
+
   cementerioMio$ = new EventEmitter<Carta>();
   cementerioOponente$ = new EventEmitter<Carta>();
+
   levantar$ = new EventEmitter();
   levantarOponente$ = new EventEmitter();
 
@@ -35,7 +36,6 @@ export class CartasService {
   ngOnInit(): void {}
 
   mezclarCartas(mazo: Carta[]) {
-    this.cartasEnCampo.splice(0, 2);
     delete this.cartaMia;
     delete this.cartaOponente;
     const mazoMezclado: Carta[] = [];
@@ -54,11 +54,18 @@ export class CartasService {
     return mazoMezclado;
   }
 
+  asignarJugador(mazo: Carta[], prop: string): Carta[] {
+    return mazo.map((carta) => {
+      carta.propietario = prop;
+      return carta;
+    });
+  }
+
   jugarCartaMia(carta: Carta, mazo: Carta[]) {
     if (this.cartaMia === undefined) {
       this.cartaMia = carta;
-      this.cartasEnCampo.push(carta);
-      console.log(this.cartasEnCampo);
+
+      this.cartasEnCampo$.emit(carta);
       var index = mazo.map((card) => card.nombre).indexOf(carta.nombre);
       mazo.splice(index, 1);
       return mazo;
@@ -69,7 +76,7 @@ export class CartasService {
     if (this.cartaOponente === undefined) {
       var index = Math.floor(Math.random() * mazo.length);
       this.cartaOponente = mazo[index];
-      this.cartasEnCampo.push(mazo[index]);
+      this.cartasEnCampo$.emit(mazo[index]);
       mazo.splice(index, 1);
       return mazo;
     }
@@ -80,50 +87,48 @@ export class CartasService {
     setTimeout(() => {
       this.cartaOponente$.emit(this.cartaOponente);
       this.cartaMia$.emit(this.cartaMia);
-      this.cartasEnCampo.splice(0, 2);
+      this.vaciarCampo$.emit(true);
       delete this.cartaOponente;
       delete this.cartaMia;
     }, 1500);
   }
 
   combate() {
-    if (this.cartasEnCampo.length === 2) {
-      //mueren ambas
-      if (
-        this.cartaMia.dano >= this.cartaOponente.defensa &&
-        this.cartaMia.defensa <= this.cartaOponente.dano
-      ) {
-        this.cartaDerrotadaMia(this.cartaMia);
-        this.cartaDerrotadaOponente(this.cartaOponente);
-        this.levantar$.emit(true);
-        this.levantarOponente$.emit(true);
-        return;
-        //gana la mia
-      } else if (this.cartaMia.dano >= this.cartaOponente.defensa) {
-        this.cartaDerrotadaOponente(this.cartaOponente);
-        this.levantarOponente$.emit(true);
-        setTimeout(() => {
-          this.jugarCarta$.emit(true);
-        }, 1500);
-
-        return;
-        //gana el oponente
-      } else if (this.cartaMia.defensa <= this.cartaOponente.dano) {
-        this.cartaDerrotadaMia(this.cartaMia);
-        this.levantar$.emit(true);
-
-        return;
-      }
-      this.recuperarCarta();
-      const combateBoton = document.getElementById(
-        'combateBoton'
-      ) as HTMLButtonElement;
-      combateBoton.disabled = true;
+    //mueren ambas
+    if (
+      this.cartaMia.dano >= this.cartaOponente.defensa &&
+      this.cartaMia.defensa <= this.cartaOponente.dano
+    ) {
+      this.cartaDerrotadaMia(this.cartaMia);
+      this.cartaDerrotadaOponente(this.cartaOponente);
+      this.levantar$.emit(true);
+      this.levantarOponente$.emit(true);
+      return;
+      //gana la mia
+    } else if (this.cartaMia.dano >= this.cartaOponente.defensa) {
+      this.cartaDerrotadaOponente(this.cartaOponente);
+      this.levantarOponente$.emit(true);
       setTimeout(() => {
-        combateBoton.disabled = false;
+        this.jugarCarta$.emit(true);
       }, 1500);
-      return this.Empate();
+
+      return;
+      //gana el oponente
+    } else if (this.cartaMia.defensa <= this.cartaOponente.dano) {
+      this.cartaDerrotadaMia(this.cartaMia);
+      this.levantar$.emit(true);
+
+      return;
     }
+    this.recuperarCarta();
+    const combateBoton = document.getElementById(
+      'combateBoton'
+    ) as HTMLButtonElement;
+    combateBoton.disabled = true;
+    setTimeout(() => {
+      combateBoton.disabled = false;
+    }, 1500);
+    return this.Empate();
   }
 
   perdiste() {
@@ -155,20 +160,22 @@ export class CartasService {
   }
 
   cartaDerrotadaMia(carta: Carta) {
-    var index = this.cartasEnCampo
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
+    this.cartaDerrotada$.emit(carta);
     this.cementerioMio$.emit(carta);
-    this.cartasEnCampo.splice(index, 1);
     delete this.cartaMia;
   }
 
   cartaDerrotadaOponente(carta: Carta) {
-    var index = this.cartasEnCampo
-      .map((card) => card.nombre)
-      .indexOf(carta.nombre);
+    this.cartaDerrotada$.emit(carta);
     this.cementerioOponente$.emit(carta);
-    this.cartasEnCampo.splice(index, 1);
     delete this.cartaOponente;
+  }
+
+  ambasDerrotadas() {
+    this.vaciarCampo$.emit(true);
+    this.cementerioOponente$.emit(this.cartaOponente);
+    this.cementerioMio$.emit(this.cartaMia);
+    delete this.cartaOponente;
+    delete this.cartaMia;
   }
 }

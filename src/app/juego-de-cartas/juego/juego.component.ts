@@ -15,14 +15,31 @@ import { CartasService } from '../services/cartas.service';
   styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit {
-  cartasEnCampo: Carta[] = this.CartasService.cartasEnCampo;
+  cartasEnCampo: Carta[] = [];
 
   constructor(private CartasService: CartasService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.CartasService.vaciarCampo$.subscribe((resp) => {
+      this.cartasEnCampo = [];
+    });
+
+    this.CartasService.cartasEnCampo$.subscribe((resp) => {
+      this.cartasEnCampo.push(resp);
+    });
+
+    this.CartasService.cartaDerrotada$.subscribe((carta) => {
+      var index = this.cartasEnCampo
+        .map((card) => card.nombre)
+        .indexOf(carta.nombre);
+      this.cartasEnCampo.splice(index, 1);
+    });
+  }
 
   combate() {
-    this.CartasService.combate();
+    if (this.cartasEnCampo.length === 2) {
+      this.CartasService.combate();
+    }
   }
 
   cartamia: Carta[] = [];
@@ -40,26 +57,9 @@ export class JuegoComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.CartasService.cartasEnCampo.push(this.cartamia[0]);
       this.CartasService.cartaMia = this.cartamia[0];
       this.CartasService.jugarCarta$.emit(true);
       this.cartamia = [];
     }
   }
 }
-/*drop(event: CdkDragDrop<Carta[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-  } */

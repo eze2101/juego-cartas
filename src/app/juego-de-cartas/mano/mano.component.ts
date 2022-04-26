@@ -17,7 +17,9 @@ import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
 })
 export class ManoComponent implements OnInit {
   private cartas: Carta[] = ListaCartas;
-  mazo: Carta[] = [...this.cartas];
+  mazo: Carta[] = this.cartas.map((carta) => {
+    return { ...carta };
+  });
   mazoMezclado: Carta[] = [];
   cementerio: Carta[] = [];
 
@@ -42,10 +44,20 @@ export class ManoComponent implements OnInit {
 
   iniciarJuego() {
     this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo);
+    this.mazoMezclado = this.asignarJugador(this.mazoMezclado, 'jugador');
     this.cartasEnMano = this.mazoMezclado.splice(0, 7);
     this.cartasServices.juegoIniciado$.emit(true);
+    this.cartasServices.vaciarCampo$.emit(true);
     this.cementerio = [];
   }
+
+  asignarJugador(mazo: Carta[], prop: string): Carta[] {
+    return mazo.map((carta) => {
+      carta.propietario = prop;
+      return carta;
+    });
+  }
+
   textoBoton() {
     var texto = document.getElementById('boton1');
     if (texto.innerText == 'Comenzar Juego')

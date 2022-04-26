@@ -4,4 +4,6 @@ export interface Carta {
   dano: number;
   defensa: number;
   imagen?: string;
+  id?: string;
+  propietario?: string;
 }
