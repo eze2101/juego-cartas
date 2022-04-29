@@ -25,7 +25,6 @@ export class OponenteComponent implements OnInit {
   constructor(private cartasServices: CartasService) {}
 
   ngOnInit(): void {
-    console.log(this.mazo);
     //mezclar y asignar mano al oponente
     this.cartasServices.juegoIniciado$.subscribe(
       (resp) => (

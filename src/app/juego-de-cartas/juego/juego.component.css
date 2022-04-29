@@ -34,7 +34,7 @@
   }
 }
 
-@media (max-height: 600px) {
+@media screen and (max-height: 600px) and (min-width: 599px) {
   .contenedorBoton {
     display: flex;
     justify-content: center;
