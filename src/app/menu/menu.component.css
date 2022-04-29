@@ -1,3 +1,26 @@
 .menu {
   height: 50px;
 }
+
+.botonInfo {
+  position: absolute;
+  right: 15px;
+  background-color: #e7e7e7;
+  height: 45px;
+}
+
+.botonInfo:hover {
+  background-color: #b5b5b5;
+}
+.menu a {
+  background-color: #e7e7e7;
+  height: 45px;
+  width: auto;
+  border-radius: 2px;
+  padding: 0 10px;
+  margin-right: 5px;
+}
+
+.menu a:hover {
+  background-color: #b5b5b5;
+}

@@ -20,13 +20,13 @@ export class OponenteComponent implements OnInit {
 
   mazoMezclado: Carta[] = [];
   cementerio: Carta[] = [];
-
   cartasEnMano: Carta[] = [];
 
   constructor(private cartasServices: CartasService) {}
 
   ngOnInit(): void {
     console.log(this.mazo);
+    //mezclar y asignar mano al oponente
     this.cartasServices.juegoIniciado$.subscribe(
       (resp) => (
         (this.mazoMezclado = this.cartasServices.mezclarCartas(this.mazo)),
@@ -39,6 +39,7 @@ export class OponenteComponent implements OnInit {
       )
     );
 
+    //jugar una carta al campo
     this.cartasServices.jugarCarta$.subscribe(
       (resp) => (
         (this.comprobar = this.cartasServices.jugarCartaOponente(
@@ -48,14 +49,17 @@ export class OponenteComponent implements OnInit {
       )
     );
 
+    //regresar una carta a la mano
     this.cartasServices.cartaOponente$.subscribe((resp) =>
       this.cartasEnMano.push(resp)
     );
 
+    //agregar carta al cementerio
     this.cartasServices.cementerioOponente$.subscribe((resp) =>
       this.cementerio.push(resp)
     );
 
+    //levantar carta del mazo
     this.cartasServices.levantarOponente$.subscribe((resp) => {
       if (this.mazoMezclado.length) {
         this.cartasEnMano.push(this.mazoMezclado.shift()!);
@@ -65,6 +69,7 @@ export class OponenteComponent implements OnInit {
     });
   }
 
+  //asigno propietario a las cartas del mazo
   asignarJugador(mazo: Carta[], prop: string): Carta[] {
     return mazo.map((carta) => {
       carta.propietario = prop;
@@ -72,6 +77,7 @@ export class OponenteComponent implements OnInit {
     });
   }
 
+  //compruebo que el mazo no este vacio
   Comprobar(comprobar: Carta[] | null) {
     if (comprobar !== null) {
       this.cartasEnMano = comprobar;

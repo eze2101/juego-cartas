@@ -8,9 +8,6 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root',
 })
 export class CartasService {
-  mazoMezclado: Carta[] = [];
-  cementerio: Carta[] = [];
-  cartasEnMano: Carta[] = [];
   cartaMia: any;
   cartaOponente: any;
 
@@ -19,11 +16,10 @@ export class CartasService {
 
   cartasEnCampo$ = new EventEmitter<Carta>();
   vaciarCampo$ = new EventEmitter();
+  cartaDerrotada$ = new EventEmitter<Carta>();
 
   cartaMia$ = new EventEmitter<Carta>();
   cartaOponente$ = new EventEmitter<Carta>();
-
-  cartaDerrotada$ = new EventEmitter<Carta>();
 
   cementerioMio$ = new EventEmitter<Carta>();
   cementerioOponente$ = new EventEmitter<Carta>();
@@ -35,6 +31,7 @@ export class CartasService {
 
   ngOnInit(): void {}
 
+  //mezcla el mazo enviado
   mezclarCartas(mazo: Carta[]) {
     delete this.cartaMia;
     delete this.cartaOponente;
@@ -54,13 +51,7 @@ export class CartasService {
     return mazoMezclado;
   }
 
-  asignarJugador(mazo: Carta[], prop: string): Carta[] {
-    return mazo.map((carta) => {
-      carta.propietario = prop;
-      return carta;
-    });
-  }
-
+  //jugar carta MIA al campo
   jugarCartaMia(carta: Carta, mazo: Carta[]) {
     if (this.cartaMia === undefined) {
       this.cartaMia = carta;
@@ -72,6 +63,8 @@ export class CartasService {
     }
     return null;
   }
+
+  //jugar carta del OPONENTE al campo
   jugarCartaOponente(mazo: Carta[]) {
     if (this.cartaOponente === undefined) {
       var index = Math.floor(Math.random() * mazo.length);
@@ -83,6 +76,7 @@ export class CartasService {
     return null;
   }
 
+  //regresar carta a mano
   recuperarCarta() {
     setTimeout(() => {
       this.cartaOponente$.emit(this.cartaOponente);
@@ -93,6 +87,7 @@ export class CartasService {
     }, 1500);
   }
 
+  //combate
   combate() {
     //mueren ambas
     if (
@@ -130,7 +125,7 @@ export class CartasService {
     }, 1500);
     return this.Empate();
   }
-
+  //cartel de derrota
   perdiste() {
     this.MessageService.add({
       severity: 'success',
@@ -139,7 +134,7 @@ export class CartasService {
       sticky: true,
     });
   }
-
+  //cartel de victoria
   ganaste() {
     this.MessageService.add({
       severity: 'success',
@@ -148,29 +143,32 @@ export class CartasService {
       sticky: true,
     });
   }
-
+  //cartel de empate
   Empate() {
     this.MessageService.add({
       severity: 'success',
       summary: 'Empate',
       detail: 'Ninguna puede vencer',
-      life: 3000,
+      life: 2000,
       //sticky: true,
     });
   }
 
+  //carta MIA derrotada
   cartaDerrotadaMia(carta: Carta) {
     this.cartaDerrotada$.emit(carta);
     this.cementerioMio$.emit(carta);
     delete this.cartaMia;
   }
 
+  //carta OPONENTE derrotada
   cartaDerrotadaOponente(carta: Carta) {
     this.cartaDerrotada$.emit(carta);
     this.cementerioOponente$.emit(carta);
     delete this.cartaOponente;
   }
 
+  //ambas cartas derrotadas
   ambasDerrotadas() {
     this.vaciarCampo$.emit(true);
     this.cementerioOponente$.emit(this.cartaOponente);

@@ -1,10 +1,16 @@
 <mat-toolbar class="menu">
   <a mat-icon-button href="">
     <mat-icon>sports_esports</mat-icon>
+    Jugar
   </a>
 
   <a mat-icon-button href="cartas">
     <mat-icon>dashboard</mat-icon>
     Cartas
   </a>
+
+  <button mat-button (click)="ComoJugar()" class="botonInfo">
+    <mat-icon class="icon">question_mark</mat-icon>
+    ¿Cómo Jugar?
+  </button>
 </mat-toolbar>

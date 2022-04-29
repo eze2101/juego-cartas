@@ -20,14 +20,17 @@ export class JuegoComponent implements OnInit {
   constructor(private CartasService: CartasService) {}
 
   ngOnInit(): void {
+    //vacio el campo de juego
     this.CartasService.vaciarCampo$.subscribe((resp) => {
       this.cartasEnCampo = [];
     });
 
+    //agrego carta al campo de juego
     this.CartasService.cartasEnCampo$.subscribe((resp) => {
       this.cartasEnCampo.push(resp);
     });
 
+    //remuevo cartas del campo de juego
     this.CartasService.cartaDerrotada$.subscribe((carta) => {
       var index = this.cartasEnCampo
         .map((card) => card.nombre)
@@ -36,12 +39,14 @@ export class JuegoComponent implements OnInit {
     });
   }
 
+  //inicar el combate
   combate() {
     if (this.cartasEnCampo.length === 2) {
       this.CartasService.combate();
     }
   }
 
+  //drag and drop
   cartamia: Carta[] = [];
   drop(event: CdkDragDrop<Carta[]>) {
     if (event.previousContainer === event.container) {
@@ -57,6 +62,7 @@ export class JuegoComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.CartasService.cartasEnCampo$.emit(this.cartamia[0]);
       this.CartasService.cartaMia = this.cartamia[0];
       this.CartasService.jugarCarta$.emit(true);
       this.cartamia = [];
