@@ -10,7 +10,7 @@
   [cdkDropListConnectedTo]="['listaCampo']"
   class="lista"
 >
-  <div fxFlex="20" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo" cdkDrag>
+  <div fxFlex="20" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo">
     <app-carta [carta]="carta" estilos="juego"></app-carta>
   </div>
 

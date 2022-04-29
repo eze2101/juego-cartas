@@ -17,6 +17,7 @@
 .lista {
   width: 100%;
   height: 40%;
+  user-select: none;
 }
 
 @media (min-width: 600px) {

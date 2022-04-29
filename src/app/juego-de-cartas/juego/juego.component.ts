@@ -50,11 +50,6 @@ export class JuegoComponent implements OnInit {
   cartamia: Carta[] = [];
   drop(event: CdkDragDrop<Carta[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
     } else if (this.CartasService.cartaMia === undefined) {
       transferArrayItem(
         event.previousContainer.data,
