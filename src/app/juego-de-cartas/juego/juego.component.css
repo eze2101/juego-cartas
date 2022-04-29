@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 410px;
+  position: relative;
 }
 
 .boton {
@@ -26,7 +25,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 180px;
+    bottom: 170px;
   }
 
   .lista {

@@ -10,11 +10,11 @@
   [cdkDropListConnectedTo]="['listaCampo']"
   class="lista"
 >
-  <div fxFlex="20" fxFlex.xs="30" *ngFor="let carta of cartasEnCampo">
+  <div fxFlex="20" fxFlex.xs="40" *ngFor="let carta of cartasEnCampo">
     <app-carta [carta]="carta" estilos="juego"></app-carta>
   </div>
 
-  <div class="contenedorBoton">
+  <div class="contenedorBoton" fxFlex="100">
     <button
       mat-button
       (click)="combate()"
