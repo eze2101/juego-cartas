@@ -7,7 +7,6 @@ import { Carta } from '../../../interfaces/carta.interface';
 @Component({
   selector: 'app-cartas',
   templateUrl: './cartas.component.html',
-  styleUrls: ['./cartas.component.css'],
 })
 export class CartasComponent implements OnInit {
   cartas: Carta[] = ListaCartas;

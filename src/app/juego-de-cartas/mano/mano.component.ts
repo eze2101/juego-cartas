@@ -5,10 +5,9 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
-import { Carta } from '../../interfaces/carta.interface';
-
 import { CartasService } from '../services/cartas.service';
 import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
+import { Carta } from '../../interfaces/carta.interface';
 
 @Component({
   selector: 'app-mano',

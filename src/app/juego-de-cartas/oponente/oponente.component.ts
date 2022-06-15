@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-
-import { Carta } from '../../interfaces/carta.interface';
+import { Component, OnInit } from '@angular/core';
 
 import { CartasService } from '../services/cartas.service';
 import ListaCartas from 'src/assets/data-cartas/data-cartas.json';
+import { Carta } from '../../interfaces/carta.interface';
+
 @Component({
   selector: 'app-oponente',
   templateUrl: './oponente.component.html',

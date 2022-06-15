@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-
-import { Carta } from '../../interfaces/carta.interface';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { CartasService } from '../services/cartas.service';
+
+import { Carta } from '../../interfaces/carta.interface';
 
 @Component({
   selector: 'app-juego',
